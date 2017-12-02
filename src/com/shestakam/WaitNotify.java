@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class WaitNotify {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Object lock = new Object();
         AtomicInteger atomicInteger = new AtomicInteger(100);
 
@@ -17,6 +17,8 @@ public class WaitNotify {
                         atomicInteger.decrementAndGet();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        // Restore the interrupted status
+                        Thread.currentThread().interrupt();
                     }
                 }
 
@@ -30,7 +32,13 @@ public class WaitNotify {
                 lock.notify();
                 lock.notify();
             }
-            Thread.sleep(1000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                // Restore the interrupted status
+                Thread.currentThread().interrupt();
+            }
         }
     }
 }

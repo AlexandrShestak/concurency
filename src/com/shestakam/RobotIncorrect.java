@@ -46,6 +46,8 @@ public class RobotIncorrect {
                         // program will not terminated and wait for this lock forever
                         condition.await();
                         System.out.println("awaitEnd");
+                    } else {
+                        lock.unlock();
                     }
                 } catch (Exception e) {
                     e.printStackTrace(System.out);

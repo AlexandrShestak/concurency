@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.httpcomponents:httpclient:4.5.4'
+    compile group: 'net.sourceforge.htmlcleaner', name: 'htmlcleaner', version: '2.2'
+
+}
